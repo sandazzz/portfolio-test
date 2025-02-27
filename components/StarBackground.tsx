@@ -1,53 +1,30 @@
 "use client";
-
-import React, { useRef, useMemo } from "react";
+import React, { useState, useRef, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Points, PointMaterial } from "@react-three/drei";
+import { Points, PointMaterial, Preload } from "@react-three/drei";
+// @ts-ignore
+import * as random from "maath/random/dist/maath-random.esm";
 
-const StarBackground = (props: React.ComponentProps<typeof Points>) => {
-  // Use a generic type for the ref to avoid importing three.js types
-  const ref = useRef<any>(null);
+const points = random.inSphere(new Float32Array(800 * 3), { radius: 1.2 });
 
-  const sphereRadius = 1.2;
-  const particleCount = 5000;
-
-  // Generate random positions inside a sphere
-  const positions = useMemo(() => {
-    const positions = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
-      const r = sphereRadius * Math.cbrt(Math.random());
-      const theta = Math.random() * 2 * Math.PI;
-      const phi = Math.acos(2 * Math.random() - 1);
-
-      positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-      positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-      positions[i * 3 + 2] = r * Math.cos(phi);
-    }
-    return positions;
-  }, []);
+const StarBackground = (props: any) => {
+  const ref: any = useRef();
+  const [sphere] = useState(points);
 
   useFrame((state, delta) => {
-    if (ref.current) {
-      ref.current.rotation.x -= delta / 10;
-      ref.current.rotation.y -= delta / 15;
-    }
+    ref.current.rotation.x -= delta / 10;
+    ref.current.rotation.y -= delta / 15;
   });
 
   return (
     <group rotation={[0, 0, Math.PI / 4]}>
-      <Points
-        ref={ref}
-        positions={positions}
-        stride={3}
-        frustumCulled
-        {...props}
-      >
+      <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
         <PointMaterial
           transparent
-          color="#22d3ee"
+          color="white"
           size={0.002}
-          sizeAttenuation
-          depthWrite={false}
+          sizeAttenuation={true}
+          dethWrite={false}
         />
       </Points>
     </group>
