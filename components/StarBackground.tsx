@@ -17,7 +17,7 @@ const StarBackground: React.FC<StarBackgroundProps> = ({
   const ref = useRef<THREE.Points>(null);
 
   const sphereRadius = 1.2;
-  const particleCount = 5000;
+  const particleCount = 3000;
 
   // Generate random positions within a sphere
   const positions = React.useMemo(() => {
