@@ -47,9 +47,6 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.17)
-      three:
-        specifier: ^0.173.0
-        version: 0.173.0
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3
