@@ -1,17 +1,15 @@
-"use client";
-
 import React, { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 
-const StarBackground = (props: any) => {
-  // Utilisation de React.ElementRef pour déduire le type de l'instance Points
-  const ref = useRef<React.ElementRef<typeof Points>>(null);
+const StarBackground = (props: React.ComponentProps<typeof Points>) => {
+  // Use a generic type for the ref to avoid importing three.js types
+  const ref = useRef<any>(null);
 
   const sphereRadius = 1.2;
   const particleCount = 5000;
 
-  // Génère des positions aléatoires dans une sphère
+  // Generate random positions inside a sphere
   const positions = useMemo(() => {
     const positions = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
@@ -46,7 +44,7 @@ const StarBackground = (props: any) => {
           transparent
           color="#22d3ee"
           size={0.002}
-          sizeAttenuation={true}
+          sizeAttenuation
           depthWrite={false}
         />
       </Points>
