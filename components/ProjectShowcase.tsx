@@ -20,35 +20,37 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "E-commerce Platform",
+    title: "Next-Strix",
     description:
-      "A full-stack e-commerce solution with user authentication, product management, and payment integration.",
-    technologies: ["React", "Node.js", "Express", "MongoDB", "Stripe"],
-    githubLink: "https://github.com/yourusername/ecommerce-platform",
-    liveLink: "https://your-ecommerce-platform.com",
+      "An e-commerce web app build with Next js Stripe API and Vercel",
+    technologies: ["Nextjs", "Tailwind CSS", "Prisma", "PostgreSQL", "Stripe"],
+    githubLink: "https://github.com/sandazzz/next-strix",
+    liveLink: "https://next-strix.vercel.app/",
   },
   {
-    title: "Task Management App",
+    title: "Githread",
     description:
-      "A responsive web application for managing tasks and projects with real-time updates.",
-    technologies: ["Next.js", "TypeScript", "Firebase", "Tailwind CSS"],
-    githubLink: "https://github.com/yourusername/task-management-app",
+      "A responsive web application that allows users to create and share threads (posts) using their GitHub account.",
+    technologies: ["Next.js", "Shadcn UI", "Prisma", "Next-Auth", "PostgreSQL"],
+    githubLink: "https://github.com/sandazzz/githread-youtube",
+    liveLink: "https://githread-youtube-steel.vercel.app/",
   },
   {
-    title: "Weather Dashboard",
-    description:
-      "An interactive weather dashboard that displays current and forecasted weather data for multiple locations.",
-    technologies: ["React", "Redux", "OpenWeatherMap API", "Chart.js"],
-    githubLink: "https://github.com/yourusername/weather-dashboard",
-    liveLink: "https://your-weather-dashboard.com",
+    title: "???",
+    description: "???",
+    technologies: ["React"],
+    githubLink: "https://github.com/",
+    liveLink: "https://vercel.com",
   },
 ];
 
 export function ProjectShowcase() {
   return (
-    <section className="py-12 ">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center text-white mb-8">My Projects</h2>
+    <section className="py-12 md:mb-64">
+      <div className="container mx-auto px-4 ">
+        <h2 className="text-3xl font-bold text-center text-white mb-8">
+          My Projects
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <Card key={index} className="flex flex-col">
